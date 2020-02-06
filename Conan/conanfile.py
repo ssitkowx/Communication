@@ -2,7 +2,7 @@ from conans import ConanFile, CMake, tools
 import os
 
 class Conan(ConanFile):
-    name            = "Template"
+    name            = "Communication"
     version         = "1.0"
     license         = "freeware"
     repoUrl         = "https://github.com/ssitkowx"
@@ -14,7 +14,6 @@ class Conan(ConanFile):
     default_options = "shared=False"
     generators      = "cmake"
     author          = "sylsit"
-    #requires        = "ProjectOrPackageName/1.0@ssitkowx/testing"
     
     def source(self):
         cloneCmd = 'git clone ' + self.url
