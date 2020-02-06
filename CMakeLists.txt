@@ -1,7 +1,7 @@
 PROJECT(Communication)
 CMAKE_MINIMUM_REQUIRED(VERSION 3.16)
 
-SET                   (ProjectName Project)
+SET                   (ProjectName ${CMAKE_PROJECT_NAME})
 SET                   (TestsName   Tests)
 SET                   (LibraryName ${CMAKE_PROJECT_NAME}Lib)
 SET                   (ConanLibraryPath "C:/Users/sitko/.conan/data")
@@ -72,6 +72,7 @@ TARGET_INCLUDE_DIRECTORIES (${TestsName}   PUBLIC              ${ProjectSubdirec
 TARGET_LINK_LIBRARIES      (${TestsName}    		           ${LibraryName} ${PackagesLibsNames})
 TARGET_COMPILE_FEATURES    (${TestsName}   PUBLIC cxx_std_17)
 
+SOURCE_GROUP               (TREE                       		   ${ProjectIncludePath} PREFIX "" FILES ${ProjectFilesAndFolders})
 ADD_LIBRARY                (${LibraryName} STATIC              ${ProjectFilesAndFolders})
 TARGET_INCLUDE_DIRECTORIES (${LibraryName} PUBLIC              ${ProjectSubdirectoriesPathsLists})
 TARGET_COMPILE_FEATURES    (${LibraryName} PUBLIC cxx_std_17)

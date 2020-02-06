@@ -8,7 +8,7 @@ class Conan(ConanFile):
     repoUrl         = "https://github.com/ssitkowx"
     url             = repoUrl + '/' + name + '.git'
     downloadsPath   = "C:/Users/sitko/.conan/download"
-    description     = "Template for projects and packages"
+    description     = "Communication project"
     settings        = "os", "compiler", "build_type", "arch"
     options         = {"shared": [True, False]}
     default_options = "shared=False"
