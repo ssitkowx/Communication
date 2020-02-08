@@ -1,26 +1,47 @@
 from conans import ConanFile, CMake, tools
-import os
+import os, re
 
 class Conan(ConanFile):
     name            = "Communication"
-    version         = "1.0"
+    #version         = "1.0"
     license         = "freeware"
     repoUrl         = "https://github.com/ssitkowx"
     url             = repoUrl + '/' + name + '.git'
     downloadsPath   = "C:/Users/sitko/.conan/download"
-    description     = "Communication project"
+    description     = "Generic communication class"
     settings        = "os", "compiler", "build_type", "arch"
     options         = {"shared": [True, False]}
     default_options = "shared=False"
     generators      = "cmake"
     author          = "sylsit"
+    build_requires  = []#["Communication/1.0@ssitkowx/testing"]
+    
+    def createDownload(self):
+        if not os.path.isdir(self.downloadsPath):
+            os.mkdir(self.downloadsPath)
+        os.chdir(self.downloadsPath)
+        
+    def cloneRepo(self, name):
+        if not os.path.isdir(name):
+            self.run('git clone ' + self.repoUrl + '/' + name + '.git')
+        os.chdir(self.downloadsPath + '/' + name + '/Conan')
+    
+    def createPackage(self, user, channel):
+        self.run('conan create . ' + user + '/' + channel)
     
     def source(self):
-        cloneCmd = 'git clone ' + self.url
-        self.run(cloneCmd)
+        for packages in self.build_requires:
+            package = (re.split('[/@]', packages, 3))
+            name    = package[0]
+            #version = package[1]
+            user    = package[2]
+            channel = package[3]
+
+            self.createDownload () 
+            self.cloneRepo      (name)
+            self.createPackage  (user,channel)
 
     def build(self):
-        currentPath = os.getcwd();
         projectPath = os.getcwd().replace('\Conan','')
         if not os.path.exists(projectPath + '\\CMakeLists.txt'):
             projectPath = os.getcwd() + '\\' + self.name
@@ -37,7 +58,6 @@ class Conan(ConanFile):
         tools.replace_in_file(projectPath + "\\CMakeLists.txt", "Template", self.name, False)
         
     def package(self):     
-        currentPath = os.getcwd();
         projectPath = os.getcwd().replace('\Conan','')
         if not os.path.exists(projectPath + '\\CMakeLists.txt'):
             projectPath = self.buildPath.replace('Build','')

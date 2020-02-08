@@ -1,7 +1,7 @@
 PROJECT(Communication)
 CMAKE_MINIMUM_REQUIRED(VERSION 3.16)
 
-SET                   (ProjectName ${CMAKE_PROJECT_NAME})
+SET                   (ProjectName Project)
 SET                   (TestsName   Tests)
 SET                   (LibraryName ${CMAKE_PROJECT_NAME}Lib)
 SET                   (ConanLibraryPath "C:/Users/sitko/.conan/data")
