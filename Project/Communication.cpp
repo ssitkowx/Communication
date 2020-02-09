@@ -4,7 +4,6 @@
 
 #include <memory.h>
 #include "Communication.h"
-//#include "Logger.h"
 
 ///////////////////////////////////////////////////////////////////////////////
 /////////////////////////// MACROS/DEFINITIONS ////////////////////////////////
@@ -35,10 +34,9 @@ void Communication::Process (void)
             send ();
             break;
         }
-        default:
-        {
-        	//THROW_EXC ("Unknown communication state");
-            break;
+        default: 
+        { 
+            break; 
         }
     }
 }

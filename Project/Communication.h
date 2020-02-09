@@ -16,7 +16,7 @@
 
 class Communication
 {
-	public:
+    public:
         enum class EState : uint8_t
         {
             eSend,
@@ -27,12 +27,12 @@ class Communication
         virtual ~Communication () = default;
 
         void                  Process      (void);
-		void                  SetState     (Communication::EState v_eState) { eState = v_eState; }
+        void                  SetState (Communication::EState v_eState) { eState = v_eState; }
 
     protected:
         virtual void          send         (void) = 0;
         virtual void          receive      (void) = 0;
-		Communication::EState getState     (void) { return eState; }
+        Communication::EState getState (void) { return eState; }
 
     private:
         EState eState;
