@@ -3,7 +3,6 @@ import os, re
 
 class Conan(ConanFile):
     name            = "Communication"
-    #version         = "1.0"
     license         = "freeware"
     repoUrl         = "https://github.com/ssitkowx"
     url             = repoUrl + '/' + name + '.git'
@@ -14,7 +13,8 @@ class Conan(ConanFile):
     default_options = "shared=False"
     generators      = "cmake"
     author          = "sylsit"
-    build_requires  = []#["Communication/1.0@ssitkowx/testing"]
+    requires        = "gtest/1.8.1@bincrafters/stable"
+    build_requires  = []
     
     def createDownload(self):
         if not os.path.isdir(self.downloadsPath):
@@ -33,7 +33,6 @@ class Conan(ConanFile):
         for packages in self.build_requires:
             package = (re.split('[/@]', packages, 3))
             name    = package[0]
-            #version = package[1]
             user    = package[2]
             channel = package[3]
 
@@ -53,7 +52,7 @@ class Conan(ConanFile):
             cmake.configure(source_dir=projectPath, build_dir=self.buildPath)
             cmake.build()
         else:
-            raise Exception('Unsupported os in build')
+            raise Exception('Unsupported platform or compiler')
             
         tools.replace_in_file(projectPath + "\\CMakeLists.txt", "Template", self.name, False)
         

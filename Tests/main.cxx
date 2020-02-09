@@ -1,3 +1,6 @@
+// Starts tests
+// author sylsit
+// 2020.02.09
 
 //////////////////////////////// INCLUDES /////////////////////////////////////
 
@@ -10,11 +13,8 @@
 
 //////////////////////////////// VARIABLES ////////////////////////////////////
 
-using ::testing::AtLeast;
-using ::testing::Return;
-
 int main (int v_argc, char ** v_argv)
 {
-	::testing::InitGoogleMock (&v_argc, v_argv);
-	return RUN_ALL_TESTS();
+    ::testing::InitGoogleMock (&v_argc, v_argv);
+    return RUN_ALL_TESTS();
 }
