@@ -1,7 +1,7 @@
 
 //////////////////////////////// INCLUDES /////////////////////////////////////
 
-#include "CommMock.h"
+#include "CommMock.hxx"
 #include "gmock/gmock.h"
 #include "gtest/gtest.h"
 #include "Communication.h"
