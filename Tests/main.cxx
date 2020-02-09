@@ -1,13 +1,20 @@
+
+//////////////////////////////// INCLUDES /////////////////////////////////////
+
+#include "CommMock.h"
+#include "gmock/gmock.h"
+#include "gtest/gtest.h"
 #include "Communication.h"
 
-class CommExample : public Communication
-{
-	protected:
-		void send    (void) {}
-		void receive (void) {}
-};
+/////////////////////////// MACROS/DEFINITIONS ////////////////////////////////
 
-int main (void)
+//////////////////////////////// VARIABLES ////////////////////////////////////
+
+using ::testing::AtLeast;
+using ::testing::Return;
+
+int main (int v_argc, char ** v_argv)
 {
-	CommExample comm;
+	::testing::InitGoogleMock (&v_argc, v_argv);
+	return RUN_ALL_TESTS();
 }

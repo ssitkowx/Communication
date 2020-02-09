@@ -4,7 +4,7 @@
 
 #include <memory.h>
 #include "Communication.h"
-//#include "ExceptionHandlerCharger.h"
+//#include "Logger.h"
 
 ///////////////////////////////////////////////////////////////////////////////
 /////////////////////////// MACROS/DEFINITIONS ////////////////////////////////
@@ -41,14 +41,6 @@ void Communication::Process (void)
             break;
         }
     }
-}
-
-// Clears message buffer.
-
-void Communication::clearMsgBufs (uint8_t v_MsgData [], uint16_t & v_MsgDataLen)
-{
-    memset (v_MsgData, 0, v_MsgDataLen);
-    v_MsgDataLen = 0;
 }
 
 /////////////////////////////// END OF FILE ///////////////////////////////////
