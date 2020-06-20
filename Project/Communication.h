@@ -8,6 +8,7 @@
 //////////////////////////////// INCLUDES /////////////////////////////////////
 ///////////////////////////////////////////////////////////////////////////////
 
+#include "Utils.h"
 #include <stdint.h>
 
 ///////////////////////////////////////////////////////////////////////////////
@@ -30,8 +31,8 @@ class Communication
         void                  SetState (Communication::EState v_eState) { eState = v_eState; }
 
     protected:
-        virtual void          send         (void) = 0;
-        virtual void          receive      (void) = 0;
+        virtual void          send     (void) = 0;
+        virtual void          receive  (void) = 0;
         Communication::EState getState (void) { return eState; }
 
     private:

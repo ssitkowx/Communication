@@ -1,7 +1,3 @@
-// General class for communication
-// author sylsit
-// 2020.02.09
-
 #pragma once 
 
 ///////////////////////////////////////////////////////////////////////////////
@@ -13,51 +9,25 @@
 #include "Communication.h"
 
 ///////////////////////////////////////////////////////////////////////////////
-//////////////////////////////// VARIABLES ////////////////////////////////////
-///////////////////////////////////////////////////////////////////////////////
-
-using ::testing::AtLeast;
-using ::testing::Return;
-
-///////////////////////////////////////////////////////////////////////////////
 /////////////////////////// CLASSES/STRUCTURES ////////////////////////////////
 ///////////////////////////////////////////////////////////////////////////////
 
-class CommMock : public Communication, public ::testing::Test
+class CommMock : public Communication
 {
     public:
-        void TestBody () override {}
-        void SetUp    () override {}
-        void TearDown () override {}
-
-        MOCK_METHOD0 (send, void (void));
+        MOCK_METHOD0 (send   , void (void));
         MOCK_METHOD0 (receive, void (void));
 };
 
-///////////////////////////////////////////////////////////////////////////////
-//////////////////////////////// FUNCTIONS ////////////////////////////////////
-///////////////////////////////////////////////////////////////////////////////
-
-TEST_F (CommMock, ChecksSwitchingBetweenSendAndReceive) 
+class CommFixture : public ::testing::Test
 {
-    CommMock commMock;
-    EXPECT_CALL (commMock, send    ()).Times (2);
-    EXPECT_CALL (commMock, receive ()).Times (2);
+    public:
+        CommMock commMock;
 
-    for (uint8_t iteration = 0; iteration < 4; iteration++)
-    {
-        commMock.Process ();
-
-        if ((iteration == 0) || (iteration == 2))
-        {
-            commMock.SetState (Communication::EState::eSend);
-        }
-        else
-        {
-            commMock.SetState (Communication::EState::eReceive);
-        }
-    }
-}
+        void TestBody () override { }
+        void SetUp    () override { }
+        void TearDown () override { }
+};
 
 ///////////////////////////////////////////////////////////////////////////////
 /////////////////////////////// END OF FILE ///////////////////////////////////
