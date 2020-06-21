@@ -16,13 +16,9 @@ class CommFixture : public ::testing::Test
     public:
         static constexpr char * MODULE = (char *)"CommFixture";
         CommMock                CommMock;
-        LoggerMock              LoggerMock;
 
         void TestBody () override { }
-        void SetUp    () override 
-        {
-            Logger::SetInstance (&LoggerMock);
-        }
+        void SetUp    () override { }
         void TearDown () override { }
 };
 
