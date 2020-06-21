@@ -3,35 +3,32 @@
 ///////////////////////////////////////////////////////////////////////////////
 
 #include "Utils.h"
-#include "CommMock.hxx"
-
-///////////////////////////////////////////////////////////////////////////////
-//////////////////////////////// VARIABLES ////////////////////////////////////
-///////////////////////////////////////////////////////////////////////////////
-
-using ::testing::AtLeast;
-using ::testing::Return;
+#include "LoggerMock.h"
+#include "gmock/gmock.h"
+#include "CommFixture.hxx"
 
 ///////////////////////////////////////////////////////////////////////////////
 //////////////////////////////// FUNCTIONS ////////////////////////////////////
 ///////////////////////////////////////////////////////////////////////////////
 
-TEST_F (CommFixture, ChecksSwitchingBetweenSendAndReceive)
+TEST_F (CommFixture, CheckThatSendOrReceiveCanBeChoosed)
 {
-    EXPECT_CALL (commMock, send    ()).Times (2);
-    EXPECT_CALL (commMock, receive ()).Times (2);
+   // LOGW (MODULE, "CheckThatSendOrReceiveCanBeChoosed");
 
-    for (uint8_t iteration = 0; iteration < 4; iteration++)
+    EXPECT_CALL (CommMock, send    ()).Times (TWO);
+    EXPECT_CALL (CommMock, receive ()).Times (TWO);
+
+    for (uint8_t iteration = ZERO; iteration < FOUR; iteration++)
     {
-        commMock.Process ();
+        CommMock.Process ();
 
-        if ((iteration == 0) || (iteration == 2))
+        if ((iteration == ZERO) || (iteration == TWO))
         {
-            commMock.SetState (Communication::EState::eSend);
+            CommMock.SetState (Communication::EState::eSend);
         }
         else
         {
-            commMock.SetState (Communication::EState::eReceive);
+            CommMock.SetState (Communication::EState::eReceive);
         }
     }
 }

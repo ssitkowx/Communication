@@ -1,5 +1,5 @@
 # Communication
-General communication.
+General class for communication.
 
 Configuration:
 1. Currently used:
@@ -12,10 +12,6 @@ Configuration:
 
 3. You need update your remotes:
    Conan remote add bincrafters https://api.bintray.com/conan/bincrafters/public-conan
-   
-4. Edit conanfile.py. For example:
-  - name     = "Template"                                          -> Display
-  - Packages = ["packageName/version@owner/channel", next package] -> ["Logger/1.0@ssitkowx/stable", "Utils/2.3@ssitkowx/testing"] 
 
 Builidng:
 1. Go to Conan folder,
@@ -25,6 +21,9 @@ Builidng:
 5. Type conan build .
 6. Got to "Build" folder and open Visual Project.
 
-Tip:
+Tips:
 - It is unacceptable if the package calls the package (recursion),
-- The first time when you run python, packages may be missing. Please follow the python suggestion to install them.
+- The first time you start the program python packages can be missing. Please follow the python suggestion to install them,
+- The first time you start the program using "conan build ." CMakeLists is updated with current project name and packages names. 
+  Remove Build folder and try again with updated CMakeLists.txt,
+- To install gtest and gmock packages for specified options and settings type "conan install . --build gtest".

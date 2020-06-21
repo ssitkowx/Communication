@@ -4,18 +4,26 @@
 //////////////////////////////// INCLUDES /////////////////////////////////////
 ///////////////////////////////////////////////////////////////////////////////
 
-#include "gmock/gmock.h"
-#include "Communication.h"
+#include "LoggerMock.h"
+#include "CommMock.hxx"
 
 ///////////////////////////////////////////////////////////////////////////////
 /////////////////////////// CLASSES/STRUCTURES ////////////////////////////////
 ///////////////////////////////////////////////////////////////////////////////
 
-class CommMock : public Communication
+class CommFixture : public ::testing::Test
 {
     public:
-        MOCK_METHOD0 (send   , void (void));
-        MOCK_METHOD0 (receive, void (void));
+        static constexpr char * MODULE = (char *)"CommFixture";
+        CommMock                CommMock;
+        LoggerMock              LoggerMock;
+
+        void TestBody () override { }
+        void SetUp    () override 
+        {
+            Logger::SetInstance (&LoggerMock);
+        }
+        void TearDown () override { }
 };
 
 ///////////////////////////////////////////////////////////////////////////////
