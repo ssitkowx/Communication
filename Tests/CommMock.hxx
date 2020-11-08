@@ -11,9 +11,12 @@
 /////////////////////////// CLASSES/STRUCTURES ////////////////////////////////
 ///////////////////////////////////////////////////////////////////////////////
 
-class CommMock final : public Communication
+class CommMock final : public Communication <CommMock>
 {
     public:
+        CommMock () = default;
+       ~CommMock () = default;
+
         MOCK_METHOD0 (send   , void (void));
         MOCK_METHOD0 (receive, void (void));
 };

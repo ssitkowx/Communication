@@ -10,8 +10,12 @@
 /////////////////////////// CLASSES/STRUCTURES ////////////////////////////////
 ///////////////////////////////////////////////////////////////////////////////
 
+template <class DERIVED_TYPE>
 class Communication
 {
+    friend DERIVED_TYPE;
+    DERIVED_TYPE & derivedType = static_cast <DERIVED_TYPE &>(*this);
+
     public:
         enum class EState : uint8_t
         {
@@ -19,19 +23,40 @@ class Communication
             eReceive
         };
 
-        Communication          () { SetState (EState::eReceive); }
-        virtual ~Communication () = default;
+        ~Communication () = default;
 
-        void                  Process      (void);
+        void Process (void)
+        {
+            EState eState = getState ();
+            switch (eState)
+            {
+                case EState::eReceive:
+                {
+                    receive ();
+                    break;
+                }
+                case EState::eSend:
+                {
+                    send ();
+                    break;
+                }
+                default:
+                {
+                    break;
+                }
+            }
+        }
+
         void                  SetState (Communication::EState v_eState) { eState = v_eState; }
 
     protected:
-        virtual void          send     (void) = 0;
-        virtual void          receive  (void) = 0;
-        Communication::EState getState (void) { return eState; }
+        void                  send     (void) { derivedType.send    (); }
+        void                  receive  (void) { derivedType.receive (); }
+        Communication::EState getState (void) { return eState;          }
 
     private:
         EState eState;
+        Communication () { SetState (EState::eReceive); }
 };
 
 ///////////////////////////////////////////////////////////////////////////////

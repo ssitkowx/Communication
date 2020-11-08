@@ -17,6 +17,9 @@ class CommFixture : public ::testing::Test
         static constexpr char * MODULE = (char *)"CommFixture";
         CommMock                CommMock;
 
+        CommFixture () = default;
+        ~CommFixture () = default;
+
         void TestBody () override { }
         void SetUp    () override { }
         void TearDown () override { }

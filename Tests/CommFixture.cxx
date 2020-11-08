@@ -25,12 +25,12 @@ TEST_F (CommFixture, CheckThatSendOrReceiveCanBeChoosed)
         if ((iterNum == ZERO) || (iterNum == TWO))
         {
             LOGD              (MODULE, "Set communication state eSend");
-            CommMock.SetState (Communication::EState::eSend);
+            CommMock.SetState (Communication <decltype (CommMock)>::EState::eSend);
         }
         else
         {
             LOGD              (MODULE, "Set communication state eReceive");
-            CommMock.SetState (Communication::EState::eReceive);
+            CommMock.SetState (Communication <decltype (CommMock)>::EState::eReceive);
         }
     }
 }
