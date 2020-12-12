@@ -47,16 +47,16 @@ class Communication
             }
         }
 
-        void                  SetState (Communication::EState v_eState) { eState = v_eState; }
+        constexpr void                  SetState (Communication::EState v_eState) { eState = v_eState; }
 
     protected:
-        void                  send     (void) { derivedType.send    (); }
-        void                  receive  (void) { derivedType.receive (); }
-        Communication::EState getState (void) { return eState;          }
+        void                            send     (void) { derivedType.send    (); }
+        void                            receive  (void) { derivedType.receive (); }
+        constexpr Communication::EState getState (void) { return eState;          }
 
     private:
         EState eState;
-        Communication () { SetState (EState::eReceive); }
+        constexpr Communication () { eState = EState::eReceive; }
 };
 
 ///////////////////////////////////////////////////////////////////////////////
