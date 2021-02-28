@@ -15,22 +15,22 @@ TEST_F (CommFixture, CheckThatSendOrReceiveCanBeChoosed)
 {
     LOGW (MODULE, "CheckThatSendOrReceiveCanBeChoosed");
 
-    EXPECT_CALL (CommMock, send    ()).Times (TWO);
-    EXPECT_CALL (CommMock, receive ()).Times (TWO);
+    EXPECT_CALL (CommHw, send    ()).Times (TWO);
+    EXPECT_CALL (CommHw, receive ()).Times (TWO);
 
     for (uint8_t iterNum = ZERO; iterNum < FOUR; iterNum++)
     {
-        CommMock.Process ();
+        CommHw.Process ();
 
         if ((iterNum == ZERO) || (iterNum == TWO))
         {
             LOGD              (MODULE, "Set communication state eSend");
-            CommMock.SetState (Communication <decltype (CommMock)>::EState::eSend);
+            CommHw.SetState (Communication <decltype (CommHw)>::EState::eSend);
         }
         else
         {
             LOGD              (MODULE, "Set communication state eReceive");
-            CommMock.SetState (Communication <decltype (CommMock)>::EState::eReceive);
+            CommHw.SetState (Communication <decltype (CommHw)>::EState::eReceive);
         }
     }
 }
