@@ -3,7 +3,7 @@
 ///////////////////////////////////////////////////////////////////////////////
 
 #include "Utils.h"
-#include "LoggerMock.h"
+#include "LoggerHw.h"
 #include "gmock/gmock.h"
 #include "CommFixture.hxx"
 
