@@ -36,3 +36,11 @@
 /trunk/conan/conanbuildinfo.gcc
 /trunk/conan/conanbuildinfo.txt
 /build
+/Build
+Conan/conan.lock
+Conan/conanbuildinfo.cmake
+Conan/conanbuildinfo.txt
+Conan/conaninfo.txt
+Conan/ConanPackages.py
+Conan/graph_info.json
+Conan/packagesProperties.txt
