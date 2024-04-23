@@ -24,13 +24,13 @@ TEST_F (CommFixture, CheckThatSendOrReceiveCanBeChoosed)
 
         if ((iterNum == ZERO) || (iterNum == TWO))
         {
-            LOGD              (MODULE, "Set communication state eSend");
-            CommHw.SetState (Communication <decltype (CommHw)>::EState::eSend);
+            LOGD (MODULE, "Set communication state Send");
+            CommHw.State = Communication <decltype (CommHw)>::EState::Send;
         }
         else
         {
-            LOGD              (MODULE, "Set communication state eReceive");
-            CommHw.SetState (Communication <decltype (CommHw)>::EState::eReceive);
+            LOGD (MODULE, "Set communication state Receive");
+            CommHw.State = Communication <decltype (CommHw)>::EState::Receive;
         }
     }
 }

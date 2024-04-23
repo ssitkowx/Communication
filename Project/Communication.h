@@ -19,23 +19,24 @@ class Communication
     public:
         enum class EState : uint8_t
         {
-            eSend,
-            eReceive
+            Send,
+            Receive
         };
+
+        EState State;
 
         ~Communication () = default;
 
         void Process (void)
         {
-            EState eState = getState ();
-            switch (eState)
+            switch (State)
             {
-                case EState::eReceive:
+                case EState::Receive:
                 {
                     receive ();
                     break;
                 }
-                case EState::eSend:
+                case EState::Send:
                 {
                     send ();
                     break;
@@ -47,16 +48,12 @@ class Communication
             }
         }
 
-        constexpr void                  SetState (Communication::EState v_eState) { eState = v_eState; }
-
     protected:
-        void                            send     (void) { derivedType.send    (); }
-        void                            receive  (void) { derivedType.receive (); }
-        constexpr Communication::EState getState (void) { return eState;          }
+        void send    (void) { derivedType.send    (); }
+        void receive (void) { derivedType.receive (); }
 
     private:
-        EState eState;
-        constexpr Communication () { eState = EState::eReceive; }
+        constexpr Communication () { State = EState::Receive; }
 };
 
 ///////////////////////////////////////////////////////////////////////////////
