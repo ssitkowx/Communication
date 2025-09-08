@@ -13,7 +13,7 @@
 class CommFixture : public ::testing::Test
 {
     public:
-        static constexpr char * MODULE = (char *)"CommFixture";
+        static constexpr char * Module = (char *)"CommFixture";
         class CommHw            CommHw;
 
         CommFixture () = default;

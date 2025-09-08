@@ -2,7 +2,6 @@
 //////////////////////////////// INCLUDES /////////////////////////////////////
 ///////////////////////////////////////////////////////////////////////////////
 
-#include "Utils.hpp"
 #include "LoggerHw.hpp"
 #include <gmock/gmock.h>
 #include "CommFixture.hxx"
@@ -13,23 +12,23 @@
 
 TEST_F (CommFixture, CheckThatSendOrReceiveCanBeChoosed)
 {
-    LOGW (MODULE, "CheckThatSendOrReceiveCanBeChoosed");
+    LOGW (Module, "CheckThatSendOrReceiveCanBeChoosed");
 
-    EXPECT_CALL (CommHw, send    ()).Times (TWO);
-    EXPECT_CALL (CommHw, receive ()).Times (TWO);
+    EXPECT_CALL (CommHw, send    ()).Times (2);
+    EXPECT_CALL (CommHw, receive ()).Times (2);
 
-    for (uint8_t iterNum = ZERO; iterNum < FOUR; iterNum++)
+    for (uint8_t iterNum = 0; iterNum < 4; iterNum++)
     {
         CommHw.Process ();
 
-        if ((iterNum == ZERO) || (iterNum == TWO))
+        if ((iterNum == 0) || (iterNum == 2))
         {
-            LOGD (MODULE, "Set communication state Send");
+            LOGD (Module, "Set communication state Send");
             CommHw.State = Communication <decltype (CommHw)>::EState::Send;
         }
         else
         {
-            LOGD (MODULE, "Set communication state Receive");
+            LOGD (Module, "Set communication state Receive");
             CommHw.State = Communication <decltype (CommHw)>::EState::Receive;
         }
     }
